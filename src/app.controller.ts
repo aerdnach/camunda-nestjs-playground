@@ -1,7 +1,12 @@
 import { Controller, Logger } from '@nestjs/common';
 import { Ctx, Payload } from '@nestjs/microservices';
 
-import { Task, TaskService, Variables } from 'camunda-external-task-client-js';
+import {
+  Task,
+  TaskService,
+  Variables,
+  HandleFailureOptions,
+} from 'camunda-external-task-client-js';
 
 import { Subscription } from 'nestjs-cambpm';
 
@@ -10,95 +15,121 @@ export class AppController {
   @Subscription('task-a', {
     lockDuration: 500,
   })
-  async parallelTestA(@Payload() task: Task, @Ctx() taskService: TaskService) {
+  async taskA(@Payload() task: Task, @Ctx() taskService: TaskService) {
     const localVariables = new Variables();
     const processVariables = new Variables();
-    processVariables.set('status', 'ok');
+    processVariables.set('taska', 'ok');
 
-    Logger.log('task A complete');
+    Logger.log('task A complete', this.constructor.name);
     await taskService.complete(task, processVariables, localVariables);
   }
 
   @Subscription('task-b', {
     lockDuration: 500,
   })
-  async parallelTestB(@Payload() task: Task, @Ctx() taskService: TaskService) {
+  async taskB(@Payload() task: Task, @Ctx() taskService: TaskService) {
     const localVariables = new Variables();
     const processVariables = new Variables();
 
-    processVariables.set('status', 'ok');
+    processVariables.set('taskb', 'ok');
 
-    Logger.log('task B complete');
+    Logger.log('task B complete', this.constructor.name);
     await taskService.complete(task, processVariables, localVariables);
   }
 
   @Subscription('task-c', {
     lockDuration: 500,
   })
-  async parallelTestC(@Payload() task: Task, @Ctx() taskService: TaskService) {
+  async taskC(@Payload() task: Task, @Ctx() taskService: TaskService) {
     const localVariables = new Variables();
     const processVariables = new Variables();
 
-    processVariables.set('status', 'ok');
-    Logger.log('task C complete');
+    processVariables.set('taskc', 'ok');
+
+    Logger.log('task C complete', this.constructor.name);
+
     await taskService.complete(task, processVariables, localVariables);
   }
 
   @Subscription('task-d', {
     lockDuration: 500,
   })
-  async parallelTestD(@Payload() task: Task, @Ctx() taskService: TaskService) {
+  async taskD(@Payload() task: Task, @Ctx() taskService: TaskService) {
     const localVariables = new Variables();
     const processVariables = new Variables();
 
-    processVariables.set('status', 'ok');
+    processVariables.set('taskd', 'ok');
 
-    Logger.log('task D complete');
-    await taskService.complete(task, processVariables, localVariables);
+    Logger.log('task D complete', this.constructor.name);
+    try {
+      await taskService.complete(task, processVariables, localVariables);
+    } catch (e) {
+      const errorMessage = e.getMessage();
+      const options: HandleFailureOptions = {
+        errorMessage: errorMessage,
+      };
+      await taskService.handleFailure(task, options);
+    }
   }
 
   @Subscription('task-e', {
     lockDuration: 500,
   })
-  async parallelEndTask(
-    @Payload() task: Task,
-    @Ctx() taskService: TaskService,
-  ) {
+  async taskE(@Payload() task: Task, @Ctx() taskService: TaskService) {
     const localVariables = new Variables();
     const processVariables = new Variables();
-    processVariables.set('status', 'ok');
+    processVariables.set('taske', 'ok');
 
-    Logger.log('task E complete');
-    await taskService.complete(task, processVariables, localVariables);
+    Logger.log('task E complete', this.constructor.name);
+    try {
+      await taskService.complete(task, processVariables, localVariables);
+    } catch (e) {
+      const errorMessage = e.getMessage();
+      const options: HandleFailureOptions = {
+        errorMessage: errorMessage,
+      };
+      await taskService.handleFailure(task, options);
+    }
   }
 
   @Subscription('task-f', {
     lockDuration: 500,
   })
-  async parallelEndTaskC(
-    @Payload() task: Task,
-    @Ctx() taskService: TaskService,
-  ) {
+  async taskF(@Payload() task: Task, @Ctx() taskService: TaskService) {
     const localVariables = new Variables();
     const processVariables = new Variables();
-    processVariables.set('status', 'ok');
+    processVariables.set('taskf', 'ok');
 
-    Logger.log('task F complete');
-    await taskService.complete(task, processVariables, localVariables);
+    Logger.log('task F complete', this.constructor.name);
+    try {
+      await taskService.complete(task, processVariables, localVariables);
+    } catch (e) {
+      const errorMessage = e.getMessage();
+      const options: HandleFailureOptions = {
+        errorMessage: errorMessage,
+      };
+      await taskService.handleFailure(task, options);
+    }
   }
 
   @Subscription('task-g', {
     lockDuration: 500,
   })
-  async parallelEndTaskD(
-    @Payload() task: Task,
-    @Ctx() taskService: TaskService,
-  ) {
+  async taskG(@Payload() task: Task, @Ctx() taskService: TaskService) {
     const localVariables = new Variables();
     const processVariables = new Variables();
-    processVariables.set('status', 'ok');
+    processVariables.set('taskg', 'ok');
 
-    Logger.log('task G complete');
-    await taskService.complete(task, processVariables, localVariables);
+    Logger.log('task G complete', this.constructor.name);
+
+    try {
+      await taskService.complete(task, processVariables, localVariables);
+    } catch (e) {
+      const errorMessage = e.getMessage();
+      const options: HandleFailureOptions = {
+        errorMessage: errorMessage,
+      };
+      await taskService.handleFailure(task, options);
+    }
   }
 }

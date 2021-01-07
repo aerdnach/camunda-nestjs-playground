@@ -17,11 +17,11 @@
       <bpmn:outgoing>Flow_0bqgto3</bpmn:outgoing>
     </bpmn:parallelGateway>
     <bpmn:sequenceFlow id="Flow_0bqgto3" sourceRef="Gateway_1ufld6k" targetRef="tc" />
-    <bpmn:serviceTask id="ta" name="task a" camunda:type="external" camunda:topic="task-a">
+    <bpmn:serviceTask id="ta" name="task a" camunda:asyncAfter="true" camunda:type="external" camunda:topic="task-a">
       <bpmn:incoming>Flow_04vc34b</bpmn:incoming>
       <bpmn:outgoing>Flow_1at7jr3</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:serviceTask id="tb" name="task b" camunda:type="external" camunda:topic="task-b">
+    <bpmn:serviceTask id="tb" name="task b" camunda:asyncAfter="true" camunda:type="external" camunda:topic="task-b">
       <bpmn:incoming>Flow_1goo6eq</bpmn:incoming>
       <bpmn:outgoing>Flow_12a9rnw</bpmn:outgoing>
     </bpmn:serviceTask>
