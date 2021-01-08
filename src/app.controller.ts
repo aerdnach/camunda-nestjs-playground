@@ -30,10 +30,15 @@ export class AppController {
   async taskB(@Payload() task: Task, @Ctx() taskService: TaskService) {
     const localVariables = new Variables();
     const processVariables = new Variables();
+    const randomValue = Math.random() > 0.5 ? 1 : 0;
 
     processVariables.set('taskb', 'ok');
+    processVariables.set('randomValue', randomValue);
 
-    Logger.log('task B complete', this.constructor.name);
+    Logger.log(
+      `task B complete [randomValue: ${randomValue}]`,
+      this.constructor.name,
+    );
     await taskService.complete(task, processVariables, localVariables);
   }
 
@@ -121,6 +126,48 @@ export class AppController {
     processVariables.set('taskg', 'ok');
 
     Logger.log('task G complete', this.constructor.name);
+
+    try {
+      await taskService.complete(task, processVariables, localVariables);
+    } catch (e) {
+      const errorMessage = e.getMessage();
+      const options: HandleFailureOptions = {
+        errorMessage: errorMessage,
+      };
+      await taskService.handleFailure(task, options);
+    }
+  }
+
+  @Subscription('task-h', {
+    lockDuration: 500,
+  })
+  async taskH(@Payload() task: Task, @Ctx() taskService: TaskService) {
+    const localVariables = new Variables();
+    const processVariables = new Variables();
+    processVariables.set('taskh', 'ok');
+
+    Logger.log('task H complete', this.constructor.name);
+
+    try {
+      await taskService.complete(task, processVariables, localVariables);
+    } catch (e) {
+      const errorMessage = e.getMessage();
+      const options: HandleFailureOptions = {
+        errorMessage: errorMessage,
+      };
+      await taskService.handleFailure(task, options);
+    }
+  }
+
+  @Subscription('task-i', {
+    lockDuration: 500,
+  })
+  async taskI(@Payload() task: Task, @Ctx() taskService: TaskService) {
+    const localVariables = new Variables();
+    const processVariables = new Variables();
+    processVariables.set('taski', 'ok');
+
+    Logger.log('task I complete', this.constructor.name);
 
     try {
       await taskService.complete(task, processVariables, localVariables);
