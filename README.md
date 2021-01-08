@@ -7,3 +7,5 @@
 A playground project for testing camunda and nestjs integration.
 
 [Camunda](http://camunda.com/) is suite of tool for process automation, built around a powerful BPMN engine. [NestJS](http://nestjs.com/) is a progressive Node.js framework for building efficient, reliable and scalable server-side applications. This project use NestJS module by [tasso94](https://github.com/tasso94) to test some BPMN diagram (present in *bpmn-diagram* folder). You need a running instance of [Camunda](https://camunda.com/download/), and a [modeler](https://camunda.com/download/modeler/) to edit diagram.
+
+Have fun!
