@@ -48,11 +48,16 @@ export class AppController {
   async taskC(@Payload() task: Task, @Ctx() taskService: TaskService) {
     const localVariables = new Variables();
     const processVariables = new Variables();
+    const beatles = ['John', 'Paul', 'George', 'Ringo'];
+    const randomBeatle = Math.floor(Math.random() * beatles.length);
 
     processVariables.set('taskc', 'ok');
+    processVariables.set('beatle', beatles[randomBeatle]);
 
-    Logger.log('task C complete', this.constructor.name);
-
+    Logger.log(
+      `task C complete [beatle: ${beatles[randomBeatle]}]`,
+      this.constructor.name,
+    );
     await taskService.complete(task, processVariables, localVariables);
   }
 

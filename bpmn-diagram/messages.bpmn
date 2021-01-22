@@ -2,9 +2,6 @@
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_10pfpn6" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.4.0">
   <bpmn:process id="messages" isExecutable="true">
     <bpmn:sequenceFlow id="Flow_0t5b21y" sourceRef="Event_0v170aa" targetRef="Activity_1sqo9mi" />
-    <bpmn:endEvent id="Event_1isi5ro">
-      <bpmn:incoming>Flow_1g534s6</bpmn:incoming>
-    </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_1lqy2s8" sourceRef="Event_1bbxpm4" targetRef="Activity_168pw1p" />
     <bpmn:intermediateCatchEvent id="Event_1bbxpm4">
       <bpmn:incoming>Flow_0xhdhhe</bpmn:incoming>
@@ -25,6 +22,10 @@
       <bpmn:outgoing>Flow_0t5b21y</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_0tfi8mi" messageRef="Message_0ofd3n4" />
     </bpmn:startEvent>
+    <bpmn:endEvent id="Event_1isi5ro">
+      <bpmn:incoming>Flow_1g534s6</bpmn:incoming>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0j5z4k9" />
+    </bpmn:endEvent>
   </bpmn:process>
   <bpmn:message id="Message_015261a" name="msg_interm" />
   <bpmn:message id="Message_0ofd3n4" name="msg_start" />
@@ -46,9 +47,6 @@
         <di:waypoint x="188" y="150" />
         <di:waypoint x="260" y="150" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="Event_1isi5ro_di" bpmnElement="Event_1isi5ro">
-        <dc:Bounds x="742" y="132" width="36" height="36" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1c5qc08_di" bpmnElement="Event_1bbxpm4">
         <dc:Bounds x="442" y="132" width="36" height="36" />
       </bpmndi:BPMNShape>
@@ -60,6 +58,9 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_00rkmxj_di" bpmnElement="Event_0v170aa">
         <dc:Bounds x="152" y="132" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1q32vkm_di" bpmnElement="Event_1isi5ro">
+        <dc:Bounds x="742" y="132" width="36" height="36" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

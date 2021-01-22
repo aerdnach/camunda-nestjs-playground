@@ -7,7 +7,8 @@ import { ExternalTaskConnector, ExternalTaskModule } from 'nestjs-cambpm';
   providers: [
     ExternalTaskConnector,
     ExternalTaskModule.createClient({
-      baseUrl: 'http://localhost:8080/engine-rest',
+      //baseUrl: 'http://localhost:8080/engine-rest',
+      baseUrl: 'http://10.150.0.192:8080/engine-rest',
     }),
   ],
 })

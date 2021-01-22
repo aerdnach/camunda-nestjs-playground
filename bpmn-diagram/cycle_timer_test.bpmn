@@ -5,8 +5,7 @@
     <bpmn:endEvent id="Event_0widlh5">
       <bpmn:incoming>Flow_0e5iit9</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_0e5iit9" sourceRef="Activity_0j7c1ir" targetRef="Event_0widlh5" />
-    <bpmn:serviceTask id="Activity_0j7c1ir" name="time task" camunda:type="external" camunda:topic="start-time-event-task">
+    <bpmn:serviceTask id="Activity_0j7c1ir" name="time task" camunda:type="external" camunda:topic="task-a">
       <bpmn:incoming>Flow_0vrsu9b</bpmn:incoming>
       <bpmn:outgoing>Flow_0e5iit9</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -16,56 +15,38 @@
         <bpmn:timeCycle xsi:type="bpmn:tFormalExpression">R/PT1M</bpmn:timeCycle>
       </bpmn:timerEventDefinition>
     </bpmn:startEvent>
-    <bpmn:boundaryEvent id="Event_0cc1yen" attachedToRef="Activity_0j7c1ir">
-      <bpmn:timerEventDefinition id="TimerEventDefinition_1pmhujh">
-        <bpmn:timeCycle xsi:type="bpmn:tFormalExpression">R2/PT5S</bpmn:timeCycle>
-      </bpmn:timerEventDefinition>
-    </bpmn:boundaryEvent>
+    <bpmn:sequenceFlow id="Flow_0e5iit9" sourceRef="Activity_0j7c1ir" targetRef="Event_0widlh5" />
     <bpmn:textAnnotation id="TextAnnotation_0ihpt49">
       <bpmn:text>Starts every minute. This process needs to be started from modeler or from cockpit.</bpmn:text>
     </bpmn:textAnnotation>
     <bpmn:association id="Association_0vs5gdh" sourceRef="StartEvent_1" targetRef="TextAnnotation_0ihpt49" />
-    <bpmn:textAnnotation id="TextAnnotation_1j1c8ue">
-      <bpmn:text>Repeated two times every five seconds</bpmn:text>
-    </bpmn:textAnnotation>
-    <bpmn:association id="Association_0w3yv0n" sourceRef="Event_0cc1yen" targetRef="TextAnnotation_1j1c8ue" />
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="time-start-event-task">
-      <bpmndi:BPMNShape id="TextAnnotation_1j1c8ue_di" bpmnElement="TextAnnotation_1j1c8ue">
-        <dc:Bounds x="430" y="320" width="130" height="40" />
+      <bpmndi:BPMNEdge id="Flow_0e5iit9_di" bpmnElement="Flow_0e5iit9">
+        <di:waypoint x="500" y="237" />
+        <di:waypoint x="702" y="237" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0vrsu9b_di" bpmnElement="Flow_0vrsu9b">
+        <di:waypoint x="215" y="237" />
+        <di:waypoint x="400" y="237" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Event_10py27y_di" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="219" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_0ihpt49_di" bpmnElement="TextAnnotation_0ihpt49">
         <dc:Bounds x="147" y="80" width="183" height="60" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Flow_0e5iit9_di" bpmnElement="Flow_0e5iit9">
-        <di:waypoint x="430" y="237" />
-        <di:waypoint x="532" y="237" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0vrsu9b_di" bpmnElement="Flow_0vrsu9b">
-        <di:waypoint x="215" y="237" />
-        <di:waypoint x="330" y="237" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="Event_0widlh5_di" bpmnElement="Event_0widlh5">
-        <dc:Bounds x="532" y="219" width="36" height="36" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1dettj4_di" bpmnElement="Activity_0j7c1ir">
-        <dc:Bounds x="330" y="197" width="100" height="80" />
+        <dc:Bounds x="400" y="197" width="100" height="80" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_10py27y_di" bpmnElement="StartEvent_1">
-        <dc:Bounds x="179" y="219" width="36" height="36" />
+      <bpmndi:BPMNShape id="Event_0widlh5_di" bpmnElement="Event_0widlh5">
+        <dc:Bounds x="702" y="219" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Association_0w3yv0n_di" bpmnElement="Association_0w3yv0n">
-        <di:waypoint x="396" y="286" />
-        <di:waypoint x="454" y="320" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Association_0vs5gdh_di" bpmnElement="Association_0vs5gdh">
         <di:waypoint x="197" y="219" />
         <di:waypoint x="197" y="140" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNShape id="Event_0w4r6qz_di" bpmnElement="Event_0cc1yen">
-        <dc:Bounds x="362" y="259" width="36" height="36" />
-      </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
 </bpmn:definitions>
